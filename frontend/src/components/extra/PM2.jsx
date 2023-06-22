@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 
 const PM2 = ({ user, children }) => {
-  console.log(user);
+  // console.log(user);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -52,7 +52,7 @@ const PM2 = ({ user, children }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme={"green"} mr={3} onClick={onClose}>
+            <Button colorScheme="green" mr={3} onClick={onClose}>
               Close
             </Button>
           </ModalFooter>

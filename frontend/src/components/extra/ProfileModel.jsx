@@ -15,7 +15,6 @@ import {
 } from "@chakra-ui/react";
 
 const ProfileModel = ({ user, children }) => {
-  
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -52,7 +51,7 @@ const ProfileModel = ({ user, children }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme={"green"} mr={3} onClick={onClose}>
+            <Button colorScheme="green" mr={3} onClick={onClose}>
               Close
             </Button>
           </ModalFooter>

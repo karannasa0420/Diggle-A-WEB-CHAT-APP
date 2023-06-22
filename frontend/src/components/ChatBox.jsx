@@ -6,7 +6,7 @@ import SingleChat from "./SingleChat";
 const ChatBox = ({fetchAgain, setFetchAgain}) => {
   const { selectedChat } = ChatState();
   const x = selectedChat ? "true" : "falswe";
-  console.log(x);
+  // console.log(x);
   return (
     <Box
       display={{ base: selectedChat ? "flex" : "none", md: "flex" }}

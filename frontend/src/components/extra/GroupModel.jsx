@@ -186,7 +186,7 @@ const GroupModel = ({ children }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme={"green"} onClick={handleSubmit}>
+            <Button colorScheme="green" onClick={handleSubmit}>
               Create Group
             </Button>
           </ModalFooter>
