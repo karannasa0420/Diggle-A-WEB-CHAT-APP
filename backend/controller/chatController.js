@@ -39,7 +39,7 @@ const accessChat = asyncHandler(async (req, res) => {
 
     try {
       const createdChat = await Chat.create(chatData);
-      const FullChat = await Chat.find(createdChat._id).populate(
+      const FullChat = await Chat.findOne(createdChat._id).populate(
         "users",
         "-password"
       );
