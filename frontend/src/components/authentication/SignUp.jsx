@@ -109,7 +109,7 @@ const SignUp = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      history.push("/chats");
+      history.push("/verify");
     } catch (error) {
       toast({
         title: "Error",

@@ -1,14 +1,20 @@
 export const getSender = (loggedUser, chat) => {
-  const data = chat;
+  if (!loggedUser || !chat) {
+    return null; // Handle the case when loggedUser or chat is undefined
+  }
 
-  // console.log(data);
   if (!chat.users || chat.users.length < 2) {
     return chat.ChatName;
   }
 
-  return chat.users[0]._id === loggedUser._id
-    ? chat.users[1].name
-    : chat.users[0].name;
+  const firstUser = chat.users[0];
+  const secondUser = chat.users[1];
+
+  if (!firstUser || !secondUser) {
+    return null; // Handle the case when firstUser or secondUser is undefined
+  }
+
+  return firstUser._id === loggedUser._id ? secondUser.name : firstUser.name;
 };
 
 export const getSenderFull = (loggedUser, chat) => {

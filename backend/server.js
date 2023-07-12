@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session");
 const dotenv = require("dotenv");
 dotenv.config();
 const { chats } = require("./data/data");
@@ -9,6 +10,15 @@ const messageRoutes = require("./routes/messageRoutes");
 const { errorHandler, notFound } = require("./middleware/errorMiddleware");
 
 const app = express();
+
+// Configure express-session middleware
+app.use(
+  session({
+    secret: "your-secret-key", // Replace with your own secret key
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.use(express.json()); //to accept json data
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);

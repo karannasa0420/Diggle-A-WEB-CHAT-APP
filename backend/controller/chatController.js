@@ -2,16 +2,9 @@ const asyncHandler = require("express-async-handler");
 const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
 
-//
-//
-//
+
 const accessChat = asyncHandler(async (req, res) => {
   const { userId } = req.body;
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> f58fe9aee36c64a499d77b6ff9f02e95eadf83b0
   if (!userId) {
     console.log("userId params not sent with request");
     return res.sendStatus(400);
@@ -61,11 +54,9 @@ const fetchChats = asyncHandler(async (req, res) => {
     })
       .populate("users", "-password")
       .populate("latestMessage")
-<<<<<<< HEAD
-      // .populate("latestMessage.sender", "name email dp")
-=======
+
       .populate("latestMessage.sender", "name email dp")
->>>>>>> f58fe9aee36c64a499d77b6ff9f02e95eadf83b0
+
       .populate("groupAdmin", "-password")
       .sort({ updatedAt: -1 })
       .then(async (results) => {

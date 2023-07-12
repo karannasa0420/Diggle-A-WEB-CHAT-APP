@@ -10,14 +10,32 @@ import {
 import { Box, Text } from "@chakra-ui/layout";
 import Login from "../components/authentication/Login";
 import SignUp from "../components/authentication/SignUp";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const HomePage = () => {
   const history = useHistory();
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-
-    if (userInfo) {
+    if (!userInfo) {
+      history.push("/");
+    }
+    if (userInfo && userInfo.isVerified === false) {
+      history.push("/verify");
+      axios
+        .post("/api/user/set-session-email", { email: userInfo.email })
+        .then((response) => {
+          if (response.status === 200) {
+            history.push("/verify");
+          } else {
+            throw new Error("Failed to set session email");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    if (userInfo && userInfo.isVerified === true) {
       history.push("/chats");
     }
   }, [history]);
@@ -47,13 +65,13 @@ const HomePage = () => {
         borderRadius="lg"
         borderWidth="1px"
       >
-        <Tabs variant="soft-rounded"  colorScheme="green">
+        <Tabs variant="soft-rounded" colorScheme="green">
           <TabList mb="1em">
             <Tab width="50%">Login</Tab>
             <Tab width="50%">SignUp</Tab>
           </TabList>
           <TabPanels>
-            <TabPanel >
+            <TabPanel>
               <Login />
             </TabPanel>
             <TabPanel>
